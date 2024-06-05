@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/main_layout.dart';
 import 'package:flutter_app/screens/auth_page.dart';
+import 'package:flutter_app/screens/doctor_details.dart';
 import 'package:flutter_app/utils/config.dart';
 
 void main() {
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const AuthPage(),
-        'main': (context) => const MainLayout()
+        'main': (context) => const MainLayout(),
+        'doc_details': (context) => const DoctorDetails()
       },
     );
   }

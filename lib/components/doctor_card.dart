@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/config.dart';
 
-class DoctorCard extends StatefulWidget {
-  const DoctorCard({super.key});
+class DoctorCard extends StatelessWidget {
+  const DoctorCard({super.key, required this.route});
 
-  @override
-  State<DoctorCard> createState() => _DoctorCardState();
-}
-
-class _DoctorCardState extends State<DoctorCard> {
+  final String route;
   @override
   Widget build(BuildContext context) {
     Config().init(context);
@@ -23,6 +19,14 @@ class _DoctorCardState extends State<DoctorCard> {
             children: [
               SizedBox(
                 width: Config.widthSize * 0.33,
+                child: Image.asset(
+                  'assets/stormtrooper.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+              const Flexible(
+                  child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const <Widget>[
@@ -64,11 +68,13 @@ class _DoctorCardState extends State<DoctorCard> {
                     )
                   ],
                 ),
-              )
+              ))
             ],
           ),
         ),
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(route);
+        },
       ),
     );
   }
