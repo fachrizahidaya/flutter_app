@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/components/button.dart';
 import 'package:flutter_app/components/custom_appBar.dart';
 import 'package:flutter_app/utils/config.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,9 +32,25 @@ class _DoctorDetailsState extends State<DoctorDetails> {
               ))
         ],
       ),
-      body: const SafeArea(
+      body: SafeArea(
           child: Column(
-        children: <Widget>[AboutDoctor()],
+        children: <Widget>[
+          const AboutDoctor(),
+          const DetailBody(),
+          const Spacer(
+            flex: 1,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Button(
+                width: double.infinity,
+                title: 'Book Appointment',
+                disable: false,
+                onPressed: () {
+                  Navigator.of(context).pushNamed('booking_page');
+                }),
+          )
+        ],
       )),
     );
   }
@@ -102,7 +119,22 @@ class DetailBody extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 30),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[Config.spaceSmall, DoctorInfo()],
+        children: <Widget>[
+          Config.spaceSmall,
+          DoctorInfo(),
+          Config.spaceSmall,
+          Text(
+            'About Doctor',
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10),
+          ),
+          Config.spaceSmall,
+          Text(
+            'Richard',
+            style: TextStyle(fontWeight: FontWeight.w500, height: 1.5),
+            softWrap: true,
+            textAlign: TextAlign.justify,
+          )
+        ],
       ),
     );
   }
@@ -114,7 +146,7 @@ class DoctorInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Config().init(context);
-    return Row(
+    return const Row(
       children: <Widget>[
         InfoCard(label: 'Patients', value: '109'),
         SizedBox(
